@@ -36,6 +36,7 @@ var timeLeft = 75;
 var qIndex = 0;
 var win = false;
 var numCorrect = 0
+var correct = false;
 
 // get DOM elements needed
 var cardTextDiv = document.getElementById("card-text");
@@ -52,11 +53,25 @@ function resetVars(){
   numCorrect = 0
 }
 
+//function to remove buttons from html
 function removeBtns(){
   while(listDiv.firstChild) {
     listDiv.removeChild(listDiv.firstChild);
   } 
 };
+
+//function to show if answer was correct or wrong
+function answerCheck(correct){
+  if(correct){
+    aCheckText.textContent = "correct";
+  }else{
+    aCheckText.textContent = "wrong";
+  }
+
+var setTO = setTimeout(function(){
+  aCheckText.textContent = "";
+}, 500);
+}
 
 // function render start button and to start timer
 function startGame(){
@@ -120,7 +135,8 @@ function checkButton(event){
     if(targetId === questions[qIndex].correctIndex){
       numCorrect++;
       qIndex++;
-      aCheckText.textContent = "correct";
+      correct = true;
+      answerCheck(correct);
       //If there are more questions, display next, else end game
       if(qIndex < questions.length){
         displayQ(qIndex);
@@ -130,7 +146,8 @@ function checkButton(event){
       }
     }else{
       timeLeft -= 5;
-      aCheckText.textContent = "wrong"
+      correct = false;
+      answerCheck(correct);
     }
 };
 
