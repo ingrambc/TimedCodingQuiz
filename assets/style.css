@@ -1,0 +1,28 @@
+.navbar-brand, .navbar{
+  color: rgb(35, 100, 35);
+  background-color: rgb(171, 245, 193);
+}
+
+.question{
+  max-width: 540px;
+  margin-top: 30px;
+  color: rgb(35, 100, 35);
+  font-size: 24px;
+  font-weight: bolder;
+}
+
+.question{
+  border: none;
+}
+
+.btn{
+  color: rgb(35, 100, 35);
+  background-color: rgb(171, 245, 193);
+  border-color: rgb(35, 100, 35);
+  margin-top: 10px;
+}
+
+.btn:hover{
+  color: rgb(171, 245, 193);
+  background-color: rgb(35, 100, 35);
+}
