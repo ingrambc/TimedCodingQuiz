@@ -14,21 +14,25 @@
 <body>
   <!--Navbar that include the timer-->
   <nav class="navbar navbar-expand-md">
-    <button id="highScore">Show High Score</button>
+    <button class="highBtn" id="highScore">Show High Score</button>
 
     <div class="navbar-brand h1 ml-auto timer">
       Timer: <span id="time">54</span>
     </div>
   </nav>
 
+  <div id="contentDiv">
+
+  </div>
+
   <!--Card that presents the question-->
-  <div class="card question mb-3 mx-auto">
-    <div class="card-body">
+  <div class="card question mb-3 mx-auto" id="card-div">
+    <div class="card-body" id = "card-text">
       This where the question goes
     </div>
 
     <!--Buttons for the answer choices-->
-    <div class="btn-verticle mx-auto">
+    <div class="btn-verticle mx-auto" id = "list-div">
       <button type="button" class="btn" id="choice1">Choice1</button>
       <br>
       <button type="button" class="btn" id="choice2">Choice2</button>
@@ -39,10 +43,6 @@
     </div>
   </div>
   
-
-
-
-  
-  <link rel="script" href="./script.js">
+  <script src="script.js"></script>
 </body>
 </html>

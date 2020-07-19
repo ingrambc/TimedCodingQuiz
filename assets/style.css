@@ -3,6 +3,12 @@
   background-color: rgb(171, 245, 193);
 }
 
+.highBtn{
+  color: rgb(35, 100, 35);
+  background-color: rgb(171, 245, 193);
+  border: none;
+}
+
 .question{
   max-width: 540px;
   margin-top: 30px;
