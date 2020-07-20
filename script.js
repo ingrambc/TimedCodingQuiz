@@ -35,14 +35,14 @@ var questions = [qObj0, qObj1, qObj2, qObj3, qObj4, qObj5, qObj6, qObj7, qObj8, 
 var timeLeft = 75;
 var qIndex = 0;
 var win = false;
-var numCorrect = 0
+var numCorrect = 0;
 var correct = false;
 
 // get DOM elements needed
 var cardTextDiv = document.getElementById("card-text");
 var listDiv = document.getElementById("list-div");
 var timeCounter = document.getElementById("time");
-var highScoreBtn = document.getElementById("high-score")
+var highScoreBtn = document.getElementById("high-score");
 var aCheckText = document.getElementById("answer-check");
 
 //function to remove child buttons
@@ -50,7 +50,7 @@ function resetVars(){
   timeLeft = 75;
   qIndex = 0;
   win = false;
-  numCorrect = 0
+  numCorrect = 0;
 }
 
 //function to remove buttons from html
@@ -155,10 +155,27 @@ function endGame(){
   removeBtns();
   //If all questions were answered, else if not
   if(qIndex === questions.length){
-    cardTextDiv.textContent = "You correctly answered all 10.  You had " + timeLeft + " seconds left!";
-    //create form to add high score
-        
+    cardTextDiv.textContent = "You correctly answered all 10.  You had " + (timeLeft + 1) + " seconds left! Enter your name to record your score.";
+  }else{
+    cardTextDiv.textContent = "You ran out of time. You answered " + numCorrect + " questions correctly! Enter your name to record your score.";
   }
+
+  //create form for high score input
+  var hsForm = document.createElement("form");
+  hsForm.setAttribute("class", "form-inline");
+  var inputFld = document.createElement("input");
+  inputFld.setAttribute("class", "form-control mb-2 mr-sm-2");
+  inputFld.setAttribute("type", "text");
+  inputFld.setAttribute("placeholder", "name or initials");
+  var subBtn = document.createElement("button");
+  subBtn.setAttribute("type", "submit");
+  subBtn.setAttribute("class", "btn mb-2 mr-sm-2");
+  subBtn.setAttribute("id", "submit-hs");
+  subBtn.textContent = "Submit";
+
+  hsForm.appendChild(inputFld);
+  hsForm.appendChild(subBtn);
+  cardTextDiv.appendChild(hsForm);
 };
 
 function displayHS(){
@@ -178,3 +195,4 @@ listDiv.addEventListener("click", function(event){
 highScoreBtn.addEventListener("click", displayHS);
 
 startGame();
+
