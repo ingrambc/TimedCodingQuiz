@@ -15,9 +15,6 @@
   color: rgb(35, 100, 35);
   font-size: 24px;
   font-weight: bolder;
-}
-
-.question{
   border: none;
 }
 
@@ -31,4 +28,8 @@
 .btn:hover{
   color: rgb(171, 245, 193);
   background-color: rgb(35, 100, 35);
+}
+
+#card-text{
+  text-align: center;
 }

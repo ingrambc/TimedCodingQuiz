@@ -213,9 +213,10 @@ function displayHS(){
   var playBtn = document.createElement("button");
   playBtn.setAttribute("class", "button btn");
   playBtn.setAttribute("id", "play-button");
-  playBtn.textContent = "   Play again!   ";
+  playBtn.textContent = "Play again!";
 
   listDiv.appendChild(clearBtn);
+  listDiv.appendChild(document.createElement("br"));
   listDiv.appendChild(playBtn);
 };
 
