@@ -37,6 +37,8 @@ var qIndex = 0;
 var win = false;
 var numCorrect = 0;
 var correct = false;
+var highScores = [];
+var hsStr ="";
 
 // get DOM elements needed
 var cardTextDiv = document.getElementById("card-text");
@@ -77,6 +79,12 @@ var setTO = setTimeout(function(){
 function startGame(){
   removeBtns();
   resetVars();
+  
+  //initiate highScores
+  storedScores = JSON.parse(localStorage.getItem("highScores"));
+  if(storedScores !== null){
+    highScores = storedScores;
+  }
 
   //get card-body by id and set text
   cardTextDiv.textContent = "There are 10 questions, each wrong anwer will cost you 5 seconds. How fast can you get through them? Click the Start button to start Quiz";
@@ -153,9 +161,12 @@ function checkButton(event){
 
 function endGame(){
   removeBtns();
+  
   //If all questions were answered, else if not
   if(qIndex === questions.length){
-    cardTextDiv.textContent = "You correctly answered all 10.  You had " + (timeLeft + 1) + " seconds left! Enter your name to record your score.";
+    //correct time for score
+    timeLeft++;
+    cardTextDiv.textContent = "You correctly answered all 10.  You had " + timeLeft + " seconds left! Enter your name to record your score.";
   }else{
     cardTextDiv.textContent = "You ran out of time. You answered " + numCorrect + " questions correctly! Enter your name to record your score.";
   }
@@ -166,33 +177,80 @@ function endGame(){
   var inputFld = document.createElement("input");
   inputFld.setAttribute("class", "form-control mb-2 mr-sm-2");
   inputFld.setAttribute("type", "text");
+  inputFld.setAttribute("id", "hs-text");
   inputFld.setAttribute("placeholder", "name or initials");
   var subBtn = document.createElement("button");
-  subBtn.setAttribute("type", "submit");
+  subBtn.setAttribute("type", "button");
   subBtn.setAttribute("class", "btn mb-2 mr-sm-2");
   subBtn.setAttribute("id", "submit-hs");
   subBtn.textContent = "Submit";
 
   hsForm.appendChild(inputFld);
   hsForm.appendChild(subBtn);
-  cardTextDiv.appendChild(hsForm);
+  listDiv.appendChild(hsForm);
 };
 
 function displayHS(){
+  removeBtns();
+  cardTextDiv.textContent = "High Scores";
 
+  for (let i = 0; i < highScores.length; i++) {
+    var score = highScores[i];
+    var li = document.createElement("li");
+    li.textContent = score;
+    listDiv.appendChild(li);
+  }
+
+  var clearBtn = document.createElement("button");
+  clearBtn.setAttribute("class", "button btn");
+  clearBtn.setAttribute("id", "clear-button")
+  clearBtn.textContent= "Clear high scores";
+  var playBtn = document.createElement("button");
+  playBtn.setAttribute("class", "button btn");
+  playBtn.setAttribute("id", "play-button");
+  playBtn.textContent = "   Play again!   ";
+
+  listDiv.appendChild(clearBtn);
+  listDiv.appendChild(playBtn);
 };
 
 // event listeners for button clicks
+highScoreBtn.addEventListener("click", displayHS);
 listDiv.addEventListener("click", function(event){
+
   if(event.target.matches("button")){
+    event.preventDefault();
+
+    //start button
     if(event.target.id === "start"){
       playGame();
+
+    //submit button
+    }else if(event.target.id === "submit-hs"){
+      hsStr = document.getElementById("hs-text").value.trim() +" - "+ timeLeft;
+      highScores.push(hsStr);                                        //add string to array
+      localStorage.setItem("highScores", JSON.stringify(highScores)); //store array locally
+      displayHS();
+    
+    //Clear high scores button
+    }else if(event.target.id === "clear-button"){
+      highScores.splice(0, highScores.length);
+      localStorage.setItem("highScores", JSON.stringify(highScores));
+      displayHS();
+    
+    //Play again button
+    }else if(event.target.id === "play-button"){
+      startGame();
+
+    //answer buttons
     }else{
       checkButton(event);
     }
   }
 });
-highScoreBtn.addEventListener("click", displayHS);
+
+
+
 
 startGame();
 
