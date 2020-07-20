@@ -1,33 +1,33 @@
 //create questions and add to an array
-var qObj0 = {question: "question0",
-            choices: ["0choice1", "choice2", "choice3", "choice4"],
+var qObj0 = {question: "How do you add a comment in javascript?",
+            choices: ["//this is a comment", "'this is a comment'", "<!--this is a comment -->", "comment 'this is a comment"],
             correctIndex: 0};
-var qObj1 = {question: "question1",
-            choices: ["1choice1", "choice2", "choice3", "choice4"],
-            correctIndex: 1};
-var qObj2 = {question: "question2",
-            choices: ["2choice1", "choice2", "choice3", "choice4"],
+var qObj1 = {question: "How do you declare a JavaScript variable?",
+            choices: ["var = varName", "variable = varName", "var varName", "declare varName"],
             correctIndex: 2};
-var qObj3 = {question: "question3",
-            choices: ["3choice1", "choice2", "choice3", "choice4"],
-            correctIndex: 3};
-var qObj4 = {question: "question4",
-            choices: ["4choice1", "choice2", "choice3", "choice4"],
-            correctIndex: 0};
-var qObj5 = {question: "question5",
-            choices: ["5choice1", "choice2", "choice3", "choice4"],
+var qObj2 = {question: "Javascript is the same as Java.",
+            choices: ["True", "False"],
             correctIndex: 1};
-var qObj6 = {question: "question6",
-            choices: ["6choice1", "choice2", "choice3", "choice4"],
-            correctIndex: 2};
-var qObj7 = {question: "question7",
-            choices: ["7choice1", "choice2", "choice3", "choice4"],
+var qObj3 = {question: "what is the correct syntax for external script called \"xxx.js\"",
+            choices: ["<script ref=\"xxx.js\">", "<script name=\"xxx.js\">", "<script div=\"xxx.js\">", "<script src=\"xxx.js>\">"],
             correctIndex: 3};
-var qObj8 = {question: "question8",
-            choices: ["8choice1", "choice2", "choice3", "choice4"],
+var qObj4 = {question: "Is JavaScript case sensitive?",
+            choices: ["False", "True"],
+            correctIndex: 1};
+var qObj5 = {question: "How do you write \"Hello World\" in an alert box?",
+            choices: ["msgBox(\"Hello World\")", "alert(\"Hello World\")", "msg(\"Hello World\")", "alertBox(\"Hello World\")"],
+            correctIndex: 1};
+var qObj6 = {question: "How do you create a function in JavaScript?",
+            choices: ["function = myFunction()", "function: myFunction()", "myFunction()", "function myFunction()"],
+            correctIndex: 3};
+var qObj7 = {question: "Which is a correct start to a for loop?",
+            choices: ["for i = 0 to i = 5", "for(i=0; i=5)", "for(i=0; i = 5; i++)", "for(i=0; i++)"],
+            correctIndex: 2};
+var qObj8 = {question: "What is the correct way to write a JavaScript array?",
+            choices: ["var array =[\"e1\", \"e2\", \"e3\"]", "var array =(\"e1\", \"e2\", \"e3\")", "var array = \"e1\", \"e2\", \"e3\""],
             correctIndex: 0};
-var qObj9 = {question: "question9",
-            choices: ["9choice1", "choice2", "choice3", "choice4"],
+var qObj9 = {question: "Inside which HTML element do we put the JavaScript?",
+            choices: ["<scripting>", "<script>", "<js>", "<javascript>"],
             correctIndex: 1};
 var questions = [qObj0, qObj1, qObj2, qObj3, qObj4, qObj5, qObj6, qObj7, qObj8, qObj9];
 
@@ -98,6 +98,7 @@ function startGame(){
   listDiv.appendChild(startBtn);
 };
 
+//function that display the question at the index of the array
 function displayQ(index){
   removeBtns();
 
@@ -117,6 +118,7 @@ function displayQ(index){
 
 };
 
+//stars the timer 
 function playGame(){
   win = false;
   numCorrect = 0;
@@ -137,6 +139,7 @@ function playGame(){
   displayQ(qIndex);
 };
 
+//checks of button click was correct answer
 function checkButton(event){
   var targetId = parseInt(event.target.id);
     //check answer if correct
@@ -159,6 +162,7 @@ function checkButton(event){
     }
 };
 
+//displays the result of the game and get high score name
 function endGame(){
   removeBtns();
   
@@ -190,6 +194,7 @@ function endGame(){
   listDiv.appendChild(hsForm);
 };
 
+//displays the high score array
 function displayHS(){
   removeBtns();
   cardTextDiv.textContent = "High Scores";
@@ -248,9 +253,6 @@ listDiv.addEventListener("click", function(event){
     }
   }
 });
-
-
-
 
 startGame();
 
